@@ -2,9 +2,9 @@
 Deep Learning Based Image Reconstruction for single source Diffuse Optical Tomography syestem with Sparse Measurements
 
 Files related to paper
-"<papername>"
+"papername"
 published on "Journal Name"
-"<paperimage>"
+"paperimage"
 
 
 This Repositpry is consisted of two main parts:
