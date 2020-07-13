@@ -1,7 +1,9 @@
 
 # sparse-dot-deep-learning
-## Deep Learning Based Image Reconstruction for single-source Diffuse Optical Tomography system with Sparse Measurements
+## Deep Learning Based Image Reconstruction for Single-Source Diffuse Optical Tomography system with Sparse Measurements 
+#### Authors : M.H. Jalalimanesh, M.A. Ansari
 ---
+
 Files related to paper
 "papername"
 published on "Journal Name"
