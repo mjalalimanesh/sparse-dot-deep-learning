@@ -1,9 +1,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Here we've solved forward problem for our simple geometry with Monte Carlo
+% method to check if it agrees with TOAST++ output  using
 % MMCLAB - Mesh-based Monte Carlo for MATLAB/Octave by Qianqina Fang
-%
-% In this example, we show the most basic usage of MMCLAB.
-%
-% This file is part of Mesh-based Monte Carlo (MMC) URL:http://mcx.sf.net/mmc
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % prepare simulation input

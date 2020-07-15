@@ -6,4 +6,4 @@ figure()
 mesh.Display()
 unique(reg)
 
-export_fig('fig1', '-q101', '-m3', '-transparent')
+%export_fig('fig1', '-q101', '-m3', '-transparent')
