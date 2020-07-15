@@ -21,5 +21,9 @@ This Repository consists of two main parts:
 ### Creating Dataset
 Dataset consists of sample pairs (X, Y) where X is boundary measurements and Y is absorption coefficient image. Final Output of this part is two matrices for X and Y of all samples. One can request access to the dataset from authors or create one with codes in this part. 
 
+### Training and Evaluation
+## ... 
 
 ## ... 
+
+
