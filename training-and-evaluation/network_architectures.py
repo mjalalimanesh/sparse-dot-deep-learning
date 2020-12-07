@@ -2,12 +2,10 @@
 """
 Created on Mon Jun 17 2019
 @author: Mohamad Jalalimanesh
-
 These functions define structure of our Neural Networks
 """
 
 import tensorflow as tf
-
 
 def mlp(n_hidden_layers=1, n_neurons=None, activations=None):
 	"""
@@ -38,9 +36,8 @@ def mlp(n_hidden_layers=1, n_neurons=None, activations=None):
 	for i in range(1, n_hidden_layers):
 		model.add(tf.keras.layers.Dense(n_neurons[i], activation=activations[i]))
 #		model.add(tf.keras.layers.BatchNormalization(axis=1))
-#	model.add(tf.keras.layers.Dropout(0.1, noise_shape=None, seed=None))
-	model.add(tf.keras.layers.Dense(4096, activation='relu'))
-
+#		model.add(tf.keras.layers.Dropout(0.1, noise_shape=None, seed=None))
+		model.add(tf.keras.layers.Dense(4096, activation='relu'))
 	return model
 
 
@@ -50,7 +47,6 @@ def conv2d_FC():
 	layers with predefined parameters
 	This Architecture is similar to famous machine vision models
 	"""
-
 	model = tf.keras.models.Sequential([
 	      	tf.keras.layers.Reshape((16,16,1), input_shape=(256,)),
       		tf.keras.layers.Conv2D(128, (2,2), strides=(1,1), activation='relu', padding='same'),
@@ -101,20 +97,111 @@ def FC_conv2d():
 	domain-transform manifold learning"
 	"""
 	model = tf.keras.models.Sequential([
-    		tf.keras.layers.Dense(600, activation='tanh', input_shape=(29,)),
-    		tf.keras.layers.Dense(4096, activation='relu'),
+    		tf.keras.layers.Dense(4096, activation='elu', input_shape=(29,)),
 	      	tf.keras.layers.Reshape((64,64,1)),
-      		tf.keras.layers.Conv2D(32, (2,2), strides=(1,1), activation='relu', padding='same'),
-#			tf.keras.layers.BatchNormalization(axis=-1),
-      		tf.keras.layers.Conv2D(32, (2,2), strides=(1,1), activation='relu', padding='same'),
-#			tf.keras.layers.BatchNormalization(axis=-1),
-      		tf.keras.layers.Conv2D(32, (2,2), strides=(1,1), activation='relu', padding='same'),
-#			tf.keras.layers.BatchNormalization(axis=-1),
-      		tf.keras.layers.Conv2D(32, (2,2), strides=(1,1), activation='relu', padding='same'),
-#			tf.keras.layers.BatchNormalization(axis=-1),
+      		tf.keras.layers.Conv2D(32, (2,2), strides=(1,1), activation='elu', padding='same'),
+    		tf.keras.layers.BatchNormalization(),
+      		tf.keras.layers.Conv2D(32, (2,2), strides=(1,1), activation='elu', padding='same'),
+    		tf.keras.layers.BatchNormalization(),
+      		tf.keras.layers.Conv2D(32, (2,2), strides=(1,1), activation='elu', padding='same'),
+    		tf.keras.layers.BatchNormalization(),
+      		tf.keras.layers.Conv2D(32, (2,2), strides=(1,1), activation='elu', padding='same'),
+    		tf.keras.layers.BatchNormalization(),
 
-      		tf.keras.layers.Conv2D(1, (2,2), strides=(1,1), activation='relu', padding='same'),
+      		tf.keras.layers.Conv2D(1, (8,8), strides=(1,1), padding='same'),
 
+	      	tf.keras.layers.Reshape((4096,))])
+	return model
+
+def dense_1dconv():
+	""" One Fully Connectted Layers followed by 1D convolutional and 2D convolutional layers """
+	model = tf.keras.models.Sequential([
+        	tf.keras.layers.Dense(128, activation='elu', input_shape=(29,)),
+
+	      	tf.keras.layers.Reshape((128,1)),
+
+      		tf.keras.layers.Conv1D(32, 3, strides=1, padding='same'),
+        	tf.keras.layers.BatchNormalization(),
+        	tf.keras.layers.Activation(tf.keras.activations.elu),
+
+      		tf.keras.layers.Conv1D(32, 3, strides=1, padding='same'),
+        	tf.keras.layers.BatchNormalization(),
+        	tf.keras.layers.Activation(tf.keras.activations.elu),
+
+      		tf.keras.layers.Conv1D(32, 3, strides=1, padding='same'),
+        	tf.keras.layers.BatchNormalization(),
+        	tf.keras.layers.Activation(tf.keras.activations.elu),
+
+      		tf.keras.layers.Conv1D(32, 3, strides=1, padding='same'),
+         	tf.keras.layers.BatchNormalization(),
+        	tf.keras.layers.Activation(tf.keras.activations.elu),
+
+ 	      	tf.keras.layers.Reshape((64,64,1)),
+      		tf.keras.layers.Conv2D(32, (2,2), strides=(1,1), padding='same'),
+    		tf.keras.layers.BatchNormalization(),
+        	tf.keras.layers.Activation(tf.keras.activations.elu),
+
+      		tf.keras.layers.Conv2D(32, (2,2), strides=(1,1), padding='same'),
+    		tf.keras.layers.BatchNormalization(),
+        	tf.keras.layers.Activation(tf.keras.activations.elu),
+
+      		tf.keras.layers.Conv2D(32, (2,2), strides=(1,1), padding='same'),
+    		tf.keras.layers.BatchNormalization(),
+        	tf.keras.layers.Activation(tf.keras.activations.elu),
+
+      		tf.keras.layers.Conv2D(32, (2,2), strides=(1,1), padding='same'),
+    		tf.keras.layers.BatchNormalization(),
+        	tf.keras.layers.Activation(tf.keras.activations.elu),
+
+      		tf.keras.layers.Conv2D(1, (8,8), strides=(1,1), padding='same'),
+	      	tf.keras.layers.Reshape((4096,))])
+	return model
+
+def one_d_conv():
+	""" 1D convlutional Layers followed by 2D convilutional Layers
+		This is the network used in final published paper
+	"""
+	model = tf.keras.models.Sequential([
+
+	      	tf.keras.layers.Reshape((29,1), input_shape=(29,)),
+        	tf.keras.layers.ZeroPadding1D((2,1)),
+
+      		tf.keras.layers.Conv1D(128, 32, strides=1, padding='same'),
+        	tf.keras.layers.BatchNormalization(),
+        	tf.keras.layers.Activation(tf.keras.activations.elu),
+
+      		tf.keras.layers.Conv1D(128, 5, strides=1, padding='same'),
+        	tf.keras.layers.BatchNormalization(),
+        	tf.keras.layers.Activation(tf.keras.activations.elu),
+
+      		tf.keras.layers.Conv1D(128, 5, strides=1, padding='same'),
+         	tf.keras.layers.BatchNormalization(),
+        	tf.keras.layers.Activation(tf.keras.activations.elu),
+
+      		tf.keras.layers.Conv1D(128, 5, strides=1, padding='same'),
+         	tf.keras.layers.BatchNormalization(),
+        	tf.keras.layers.Activation(tf.keras.activations.elu),
+
+#          tf.keras.layers.MaxPooling1D(pool_size=2),
+
+ 	      	tf.keras.layers.Reshape((64,64,1)),
+      		tf.keras.layers.Conv2D(32, (2,2), strides=(1,1), padding='same'),
+    		tf.keras.layers.BatchNormalization(),
+        	tf.keras.layers.Activation(tf.keras.activations.elu),
+
+      		tf.keras.layers.Conv2D(32, (2,2), strides=(1,1), padding='same'),
+    		tf.keras.layers.BatchNormalization(),
+        	tf.keras.layers.Activation(tf.keras.activations.elu),
+
+      		tf.keras.layers.Conv2D(32, (2,2), strides=(1,1), padding='same'),
+    		tf.keras.layers.BatchNormalization(),
+        	tf.keras.layers.Activation(tf.keras.activations.elu),
+
+      		tf.keras.layers.Conv2D(32, (2,2), strides=(1,1), padding='same'),
+    		tf.keras.layers.BatchNormalization(),
+        	tf.keras.layers.Activation(tf.keras.activations.elu),
+
+      		tf.keras.layers.Conv2D(1, (8,8), strides=(1,1), padding='same'),
 	      	tf.keras.layers.Reshape((4096,))])
 	return model
 
@@ -141,14 +228,3 @@ def resnet(modelA):
 #	    print(l.name, l.trainable)
 
 	return model
-
-
-def custom_objective(y_true, y_pred):
-	"""
-	costum objective function
-	balanced sum of mse and mae
-	"""
-	mse_loss= tf.keras.backend.mean(tf.keras.backend.square(y_pred - y_true), axis=-1)
-	mae_loss = tf.keras.backend.mean(tf.keras.backend.abs(y_pred - y_true), axis=-1)
-	loss = mse_loss + mae_loss*(mse_loss/mae_loss)
-	return loss
