@@ -30,7 +30,7 @@ Forward problem is  then solved in forwad_create_dataset.m where we read mesh fi
 
 ### Training and Evaluation
 #### Training Network
-Training is done in training notebook [![Open In Colab](https://camo.githubusercontent.com/52feade06f2fecbf006889a904d221e6a730c194/68747470733a2f2f636f6c61622e72657365617263682e676f6f676c652e636f6d2f6173736574732f636f6c61622d62616467652e737667)](https://colab.research.google.com/github/mjalalimanesh/sparse-dot-deep-learning/blob/master/training.ipynb)
+Training is done in training notebook [training.ipynb](https://github.com/mjalalimanesh/sparse-dot-deep-learning/blob/master/training-and-evaluation/training.ipynb "training.ipynb")
 Functions for reading and preprocessing data are stored in [read_preprocess_data.py](https://github.com/mjalalimanesh/sparse-dot-deep-learning/blob/master/training-and-evaluation/read_preprocess_data.py "read_preprocess_data.py") and various network architectures we tested are stored in [network_architectures.py](https://github.com/mjalalimanesh/sparse-dot-deep-learning/blob/master/training-and-evaluation/network_architectures.py "network_architectures.py") 
 
 #### Evaluation
