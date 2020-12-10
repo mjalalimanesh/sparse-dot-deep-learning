@@ -86,3 +86,4 @@ def pascal_localization_metric(y_test, y_pred, scale_test, scale_pred):
     count_intersection = np.sum(np.logical_and(gt, loc))
     count_union = np.sum(loc) + np.sum(gt) - count_intersection
     return count_intersection / count_union
+
