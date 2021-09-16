@@ -9,9 +9,8 @@
 
 Files related to paper
 Deep Learning Based Image Reconstruction for single-source Diffuse Optical Tomography system with sparse measurements
-published on "Journal Name"
-"paperimage"
-
+published on "Waves in Random and Complex Media"
+https://www.tandfonline.com/eprint/DDCIUQKS6QRTDWFCMXHR/full?target=10.1080/17455030.2021.1968540
 
 This Repository consists of two main parts:
 
